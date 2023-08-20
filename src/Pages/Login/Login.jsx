@@ -4,6 +4,7 @@ import { AuthContext } from '../Providers/AuthProviders';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
+import SocailLogin from '../Components/SocailLogin/SocailLogin';
 
 const Login = () => {
 
@@ -100,8 +101,10 @@ const handleValidateCaptcha =(e)=>{
         </div>
         <p className='text-center text-yellow-400 text-1xl font-bold'>New here? Create an<Link className='font-bold text-black text-2xl' to='/signUp'>  New Account </Link></p>
       </form>
+      <SocailLogin></SocailLogin>
     </div>
   </div>
+  
 </div>
        </>
     );

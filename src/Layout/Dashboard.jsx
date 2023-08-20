@@ -1,10 +1,12 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaCalendarAlt, FaHome, FaShoppingCart, FaWallet } from 'react-icons/fa';
+import { FaBook, FaCalendarAlt, FaHome, FaShoppingCart, FaUsers, FaUtensils, FaWallet } from 'react-icons/fa';
 import useCart from "../hooks/UseCart";
+import useAdmin from "../hooks/useAdmin";
 
 
 const Dashboard = () => {
   const [cart] =useCart()
+  const [isAdmin] = useAdmin();
     return (
         <div className="drawer lg:drawer-open">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -16,11 +18,21 @@ const Dashboard = () => {
   <div className="drawer-side bg-[#D1A054]">
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
     <ul className="menu p-4 w-80 h-full">
+{
+  isAdmin?<>
+    <li><NavLink to='dashboard/adminHome'><FaHome></FaHome> Admin  Home</NavLink></li>
+      <li><NavLink to='dashboard/addItems'><FaUtensils></FaUtensils> Add Items</NavLink></li>
+      <li><NavLink to='dashboard/manageItems'><FaWallet></FaWallet> Manage Items</NavLink></li>
+      <li><NavLink to='/dashboard/manageBooking'><FaBook></FaBook> Manage Booking<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink></li>
+      <li><NavLink to='/dashboard/allUsers'><FaUsers></FaUsers>  All Users<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink></li>
+  </> :<>  <li><NavLink to='dashboard/myCart'><FaHome></FaHome> User  Home</NavLink></li>
+  <li><NavLink to='dashboard/myCart'><FaCalendarAlt></FaCalendarAlt> Reservation</NavLink></li>
+  <li><NavLink to='dashboard/myCart'><FaWallet></FaWallet>  Payment History</NavLink></li>
+  <li><NavLink to='/dashboard/myCart'><FaShoppingCart></FaShoppingCart>  My Cart<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink></li></>
+}
+
       {/* Sidebar content here */}
-      <li><NavLink to='dashboard/myCart'><FaHome></FaHome> User  Home</NavLink></li>
-      <li><NavLink to='dashboard/myCart'><FaCalendarAlt></FaCalendarAlt> Reservation</NavLink></li>
-      <li><NavLink to='dashboard/myCart'><FaWallet></FaWallet>  Payment History</NavLink></li>
-      <li><NavLink to='/dashboard/myCart'><FaShoppingCart></FaShoppingCart>  My Cart<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink></li>
+    
 
       <div className="divider"></div>
 

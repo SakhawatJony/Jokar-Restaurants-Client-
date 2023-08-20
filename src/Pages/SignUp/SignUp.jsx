@@ -4,6 +4,7 @@ import { AuthContext } from "../Providers/AuthProviders";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import SocailLogin from "../Components/SocailLogin/SocailLogin";
 
 
 const SignUp = () => {
@@ -18,8 +19,18 @@ createUser(data.email,data.password)
   console.log(userLogged);
   updateUserProfile(data.name,data.photoURL)
   .then(()=>{
-    console.log('user profile info updated')
-    reset();
+    const saveUser = {name:data.name,email:data.email}
+    fetch('http://localhost:5000/users',{
+      method:'POST',
+      headers: {
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(saveUser)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.insertedId){
+        reset();
     Swal.fire({
       position: 'top-end',
       icon: 'success',
@@ -28,6 +39,9 @@ createUser(data.email,data.password)
       timer: 1500
     })
     navigate('/');
+      }
+    })
+    
   })
   .catch(error=>console.log(error))
 })
@@ -92,6 +106,7 @@ createUser(data.email,data.password)
         </div>
         <small className="text-center text-yellow-400 text-1xl font-bold">Already registered?Go to <Link className="text-black font-bold text-2xl" to='/login'>LogIn</Link> </small>
       </form>
+      <SocailLogin></SocailLogin>
      
     </div>
   </div>
