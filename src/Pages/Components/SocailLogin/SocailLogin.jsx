@@ -25,9 +25,6 @@ const SocailLogin = () => {
             })
             .then(res=>res.json())
             .then(()=>{
-              
-              
-            
             navigate(from,{replace:true});
         })
         

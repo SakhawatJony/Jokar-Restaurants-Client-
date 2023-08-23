@@ -1,7 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaBook, FaCalendarAlt, FaHome, FaShoppingCart, FaUsers, FaUtensils, FaWallet } from 'react-icons/fa';
-import useCart from "../hooks/UseCart";
 import useAdmin from "../hooks/useAdmin";
+import useCart from "../hooks/UseCart";
+
 
 
 const Dashboard = () => {
@@ -24,11 +25,14 @@ const Dashboard = () => {
       <li><NavLink to='dashboard/addItems'><FaUtensils></FaUtensils> Add Items</NavLink></li>
       <li><NavLink to='dashboard/manageItems'><FaWallet></FaWallet> Manage Items</NavLink></li>
       <li><NavLink to='/dashboard/manageBooking'><FaBook></FaBook> Manage Booking<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink></li>
-      <li><NavLink to='/dashboard/allUsers'><FaUsers></FaUsers>  All Users<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink></li>
-  </> :<>  <li><NavLink to='dashboard/myCart'><FaHome></FaHome> User  Home</NavLink></li>
-  <li><NavLink to='dashboard/myCart'><FaCalendarAlt></FaCalendarAlt> Reservation</NavLink></li>
-  <li><NavLink to='dashboard/myCart'><FaWallet></FaWallet>  Payment History</NavLink></li>
-  <li><NavLink to='/dashboard/myCart'><FaShoppingCart></FaShoppingCart>  My Cart<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink></li></>
+     
+  </> :<>  <li><NavLink to='dashboard/userHome'><FaHome></FaHome> User  Home</NavLink></li>
+  <li><NavLink to='dashboard/reservation'><FaCalendarAlt></FaCalendarAlt> Reservation</NavLink></li>
+  <li><NavLink to='dashboard/history'><FaWallet></FaWallet>  Payment History</NavLink></li>
+  <li><NavLink to='/dashboard/myCart'><FaShoppingCart></FaShoppingCart>  My Cart<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink></li>
+  <li><NavLink to='/dashboard/allUsers'><FaUsers></FaUsers>  All Users<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink></li>
+  </>
+  
 }
 
       {/* Sidebar content here */}

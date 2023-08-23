@@ -1,8 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import useCart from "../../../hooks/UseCart";
-
 import { FaTrash } from 'react-icons/fa';
 import Swal from "sweetalert2";
+import useCart from "../../../hooks/UseCart";
 
 
 const MyCart = () => {
@@ -42,11 +41,11 @@ Swal.fire({
 
     }
     return (
-        <div>
+        <div className="w-full">
           <Helmet>
         <title>Jokar Resturent | MyCart</title>
       </Helmet>
-      <div className="uppercase flex  font-bold justify-evenly">
+      <div className="uppercase flex  font-bold justify-evenly my-5">
         <h3>Total Orders: {cart.length}</h3>
         <h3>Tottal Price: ${total}</h3>
         <button className="btn btn-warning btn-sm">PAY</button>
